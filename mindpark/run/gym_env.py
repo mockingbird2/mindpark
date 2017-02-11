@@ -1,4 +1,5 @@
 import gym
+from gym import wrappers
 from mindpark.core import Env
 
 
@@ -9,7 +10,8 @@ class GymEnv(Env):
         self._env = gym.make(env_name)
         self._directory = directory
         if self._directory:
-            self._env.monitor.start(self._directory, videos)
+            # self._env.monitor.start(self._directory, videos)
+            self._env = wrappers.Monitor(self._env, self._directory, videos)
 
     @property
     def observs(self):

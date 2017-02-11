@@ -5,7 +5,8 @@ from tensorflow.contrib import slim
 
 
 def conv2d(x, filters, size, stride, activation=tf.nn.relu, pool=None):
-    x = slim.conv2d(x, filters, [size, size], stride, 'VALID', 1, activation)
+    x = slim.conv2d(x, filters, [size, size], stride, data_format=None,
+                    padding='VALID', rate=1, activation_fn=activation)
     if pool:
         pool = [1, pool, pool, 1]
         x = tf.nn.max_pool(x, pool, pool, 'VALID')
